@@ -76,7 +76,7 @@ The Information provided here is meant for learning purposes only, it is fiction
 Main
 ================================================================================
 
-Khaled Kahusai {#title}
+Khaled Hussain {#title}
 --------------------------------------------------------------------------------
 
 ```{r}
