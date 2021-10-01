@@ -1,6 +1,6 @@
 ---
-title: "Khaled Kahusai's CV"
-author: Khaled Kahusai
+title: "Khaled Hussain's CV"
+author: Khaled Hussain
 date: "`r Sys.Date()`"
 output:
   pagedown::html_resume:
