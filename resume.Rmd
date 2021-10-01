@@ -1,0 +1,98 @@
+---
+title: Khaled Kahusai's Resume"
+author: Khaled Kahusai
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    css: ['css/custom_resume.css', 'css/styles.css', 'resume']
+    self_contained: true
+---
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+library(tidyverse)
+library(glue)
+
+# Set this to true to have links turned into footnotes at the end of the document
+PDF_EXPORT <- FALSE
+
+# Holds all the links that were inserted for placement at the end
+links <- c()
+
+source('parsing_functions.R')
+
+
+# First let's get the data, filtering to only the items tagged as
+# Resume items
+position_data <- read_csv('khahussai.csv') %>% 
+  filter(in_resume) %>% 
+  mutate(
+    # Build some custom sections by collapsing others
+    section = case_when(
+      section %in% c('research_positions', 'industry_positions') ~ 'positions', 
+      section %in% c('data_science_writings', 'by_me_press') ~ 'writings',
+      TRUE ~ section
+    )
+  ) 
+
+```
+
+
+Aside
+================================================================================
+
+
+![logo](beta_dist.png){width=100%}
+
+Contact {#contact}
+--------------------------------------------------------------------------------
+
+
+
+- <i class="fa fa-envelope"></i> khaledova@gmail.com
+- <i class="fa fa-github"></i>  github.com/kahussai
+- <i class="fa fa-phone"></i> +18044893558
+
+NOTE {#more-info}
+--------------------------------------------------------------------------------
+
+The Information provided here is meant for learning purposes only, it is fictional.
+
+
+Main
+================================================================================
+
+Khaled Kahusai {#title}
+--------------------------------------------------------------------------------
+
+```{r}
+intro_text <- "I am a student at Arizona Sate University undertaking my Masters in Program Evaluation & Data Analytics. I mainly Focus on supporting the realization of positive social impact through data analytics and modelling.
+"
+
+cat(sanitize_links(intro_text))
+```
+
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('education')
+```
+
+
+
+Selected Positions {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('positions')
+```
+
+
+
